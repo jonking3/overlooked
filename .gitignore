@@ -1,0 +1,6 @@
+# Local working files — kept on disk, not published
+archive/
+
+# Python
+__pycache__/
+*.py[cod]
