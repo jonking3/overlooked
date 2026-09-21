@@ -18,15 +18,12 @@ A fun, self-guided terminal exploration written from scratch without external fr
 python overlooked.py
 ```
 
-Requires **Python 3.6+** (f-strings) and **Windows** — key input goes through
-`user32.GetAsyncKeyState`, so for now, not cross-platform without a significant rewrite.
-
-Use **Windows Terminal** or **PowerShell 7**. 
+Requires **Python 3.6+** and **Windows**. Key input uses `user32.GetAsyncKeyState`, so for now, not cross-platform without a significant rewrite.
 
 | Key | Does |
 |---|---|
-| `↑ ↓ ← →` | Steer the ant. You can't reverse into your own neck. |
-| `` ` `` | Toggle debug mode — draws segment indices instead of glyphs. |
+| `↑ ↓ ← →` | Move the ant. You can't go backwards into your own neck. |
+| `` ` `` | Toggle debug mode. Draws segment index when drawing each glyph. |
 | `Esc` | Quit. |
 
 ![Overlooked demo](overlooked.gif)
@@ -117,9 +114,9 @@ My teacher took us to a Japanese Garden. We drank green tea, meditated, and let 
 - (Claude) Key-down/masking: discussed ctypes interop
   - I've always had to look up system-library interop and AI is now the faster lookup path
   - debugged issue in my GetAsyncKeyState and typing and to understand why I needed ```(ctypes.c_int,)``` or ```[ctypes.c_int]``` and why ```(ctypes.c_int)``` didn't work
-- (Gemini) code/comment review - specifically to see if my code and comments were clear
+- (Gemini + Claude) code/comment review - specifically to see if my code and comments were clear
   - Gemini tried to rewrite comments, change my architecture, and fix the bugs I noted (I was not a fan)
-  
+  - Claude recommended a section for how to run, to expand my cross platform info with requirements, and also suggested a gif since it was limited to Windows-only. Additionally, recommended a ring-buffer diagram for clarity -- I modified that to make it my own ~visualization of the ring buffer in the move_one_step doc string.
 ---
 
 ## KNOWN BUGS 𝈀𝈀𝈀ᗧ

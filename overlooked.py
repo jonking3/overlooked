@@ -189,9 +189,9 @@ def build_write_grid_string(grid_pos, char):
     render_pos = grid_pos + Vector2D(2,2)
     lines_up = GRID_HEIGHT + 1 + GRID_LINES_BELOW  - grid_pos.y   # +1 = bottom border
     
-    #TODO: absolute pos I think would be better eventually. cause this is getting a bit whacky. I think these are it:
-    #screen_line = GRID_LINES_ABOVE + 1 + grid_pos.y    # +1 for the top border
-    #screen_col  = 2 + grid_pos.x                       # 1 pad + 1 border
+    #TODO: absolute pos I think would be better eventually.
+    #      cause lines_up is starting to feel awkward and a bit whacky. I think this is the conversion between grid_pos (x,y) and screen_pos (col, line) :
+    #screen_pos = Vector2D(2 + grid_pos.x, GRID_LINES_ABOVE + 1 + grid_pos.y)
     
     # "\033[" is the "ANSI Control Sequence Introducer (CSI)"
     #     It is an escape sequence that sorta tells the terminal ~"don't print the next few characters" - used to move cursor, change colors, maybe more?
@@ -277,24 +277,20 @@ def move_one_step(direction):
     
     `_pos` is a fixed 4-slot ring buffer.  (TODO: base initial definition on ANT_LEN)
     
-    Moving decrements `_head_pointer`, so walking *backwards* through slots walks *forwards*
-    through time. The payoff: the slot immediately behind the head is always
-    the oldest segment — the tail — which is exactly the slot the new head
-    should overwrite. One pointer decrement, one slot write, no shifting.
+    Moving decrements `_head_pointer`, and the new head (pos, orientation) gets written over the old tail.
+    Pointer decrement, write new head pos. NO SHIFT
 
     slot:          0                1                2                3
     before:  ((5,0),RIGHT)    ((4,0),RIGHT)    ((3,0),RIGHT)    ((2,0),RIGHT)      # _head_pointer = 0
                    ^head           seg1             seg2             tail
 
-    move DOWN:  _head_pointer = (0 - 1) % 4 = 3
+    MOVE DOWN:   _head_pointer = (0 - 1) % 4 = 3
                  new_pos = (5,0) + DOWN = (5,1)     # DOWN = (0,1)
                  pos[3] = new_pos, DOWN             # tail slot reused
 
     slot:          0                1                2                3
     after:   ((5,0),RIGHT)    ((4,0),RIGHT)    ((3,0),RIGHT)    ((5,1),DOWN)      # _head_pointer = 3
                   seg1         seg2             tail                 ^head
-
-    Returns the old tail position so draw() knows which cell to erase.
     """
     global _head_pointer
     old_tail_pos = _pos[(_head_pointer - 1) % ANT_LEN][0]
