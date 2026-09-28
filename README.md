@@ -159,7 +159,7 @@ I'm including it as an example of the glyphs in running text rather than in a ch
 
 ## Thoughts
 
-* maybe encapsulate pos and orientation into Pose and make a class like AntState to wrap the global circular buffer `_pos` and `_head_pointer` into a dedicated class. would cleans up global state usage (`global _running, _head_pointer`) inside `main()` and `update()`.
-  - Pos + Loc => needs a composite name. class would be good too. Searching yielded: Pose (technically a 2D Pose) or Special Euclidean group 2 "SE(2)". I think Pose
+* Maybe encapsulate pos and orientation into Pose and make a class like AntState to wrap the global circular buffer `_pos` and `_head_pointer` into a dedicated class. This cleans up global state usage (`global _running, _head_pointer`) inside `main()` and `update()`.
+  - Pos + Loc => needs a composite name. class would be good too. Searching yielded: Pose (technically a 2D Pose) or Special Euclidean group "SE(2)". I think Pose
 * **Observation:** reminds me of snake, falldown
 * **Observation:** there is no home to journey to. There was none to be seen when I observed the ant, either. Just noting because I wrote "A lone ant’s wayward journey home"
