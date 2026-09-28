@@ -4,3 +4,6 @@ archive/
 # Python
 __pycache__/
 *.py[cod]
+
+# Third-party reference images (linked in README, not redistributed)
+*.jpg

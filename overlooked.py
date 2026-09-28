@@ -1,7 +1,7 @@
 """
 Overlooked (by Jon King) - terminal ant
 
-<i>```A lone ant’s wayward journey home, unaware that a giant eye was tracking its every step.```</i>
+<i>```A lone ant's wayward journey home, unaware that a giant eye was tracking its every step.```</i>
 
 A fun, self-guided terminal exploration written from scratch without external frameworks.
 
@@ -155,7 +155,7 @@ def isDirectionAllowed(direction):
     next_pos = head_pos + direction
     
     
-    if (direction == -1 * head_dir):    #opposite direction to head not allowed
+    if (direction == -1 * head_dir):    #opposite direction to head not allowed (this is why I included mult/rmult in my Vector2d!)
        return False
     if (next_pos.x < 0 or next_pos.y < 0 or next_pos.x >= GRID_WIDTH or next_pos.y >= GRID_HEIGHT):
         return False
@@ -171,7 +171,7 @@ def build_write_grid_string(grid_pos, char):
     
     #must be synced with draw_initial() or redefined to render algorithmically
     
-    #  (0,0)                            (23,0)
+    #  (0,0)                         (23,0)
     #  +-----------------------------+  <- Line 0:  Empty Line
     #  |  Overlooked by Jon K        |  <- Line 1:  Title + Author
     #  | ╔═════════════════════════╗ |  <- Line 2:  Top Border
@@ -191,7 +191,8 @@ def build_write_grid_string(grid_pos, char):
     
     #TODO: absolute pos I think would be better eventually.
     #      cause lines_up is starting to feel awkward and a bit whacky. I think this is the conversion between grid_pos (x,y) and screen_pos (col, line) :
-    #screen_pos = Vector2D(2 + grid_pos.x, GRID_LINES_ABOVE + 1 + grid_pos.y)
+    
+    #     screen_pos = Vector2D(2 + grid_pos.x + 1, GRID_LINES_ABOVE + 1 + grid_pos.y + 1)   #extra + 1 makes it 1-indexed to match position for absolute write ("\033[r;cH")
     
     # "\033[" is the "ANSI Control Sequence Introducer (CSI)"
     #     It is an escape sequence that sorta tells the terminal ~"don't print the next few characters" - used to move cursor, change colors, maybe more?
@@ -231,12 +232,20 @@ def build_write_grid_string(grid_pos, char):
 
 def graphic_from_type_and_orientation(segment_number, orientation):
     """
-    Returns the ASCII character based on type and orientation vector. For now just write 0,1,2,3
-    coord_data looks like [x, y, [dx, dy]]. Segment 0 is the head. Segments 1,2,3 are body. otherwise, erasable (old tail)
+    Returns a 1-character string (the glyph) based on type and orientation vector.
+    
+    segment_number:
+        0 => head
+        1..ANT_LEN-1 => body
+        else => blank space " " (old tail is erased)
+        
+    orientation: a unit Vector2D (one of UP/DOWN/LEFT/RIGHT)
+    
+    in debug mode, uses the segment index 0 ... (ANT_LEN -1)
     """
     if _debug_mode:
-        if segment_number >= 0 and segment_number <= 3:
-            return segment_number
+        if segment_number >= 0 and segment_number <= (ANT_LEN - 1):
+            return str(segment_number)
         else:
             return " " #delete the tail
     else:        
@@ -290,7 +299,7 @@ def move_one_step(direction):
 
     slot:          0                1                2                3
     after:   ((5,0),RIGHT)    ((4,0),RIGHT)    ((3,0),RIGHT)    ((5,1),DOWN)      # _head_pointer = 3
-                  seg1         seg2             tail                 ^head
+                  seg1             seg2             tail              ^head
     """
     global _head_pointer
     old_tail_pos = _pos[(_head_pointer - 1) % ANT_LEN][0]
