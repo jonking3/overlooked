@@ -30,7 +30,7 @@ Requires **Python 3.6+** and **Windows**. Key input uses `user32.GetAsyncKeyStat
 ## Inspiration
 One of the suggestions: "Choose your favorite poem and let it inspire what you make"
 
-In 11th grade English class, I took American and British Romanticism. I found inspiration from a memory from that class tied to a poem I wrote. (I don't know which author or poet this was related to unfortunately.)
+In 11th grade English class, I took American and British Romanticism. I found inspiration from a memory from that class tied to a poem I wrote.
 
 My teacher took us to a Japanese Garden. We drank green tea, meditated, and let our thoughts go, untethered. I found myself captivated by the journey of a lone ant. I wrote a poem called 'Overlooked' about that ant’s wayward journey home, unaware that a giant eye was tracking its every step.
 
@@ -88,8 +88,8 @@ My teacher took us to a Japanese Garden. We drank green tea, meditated, and let 
 * python class-related stuff
   - classes (https://www.w3schools.com/python/python_classes.asp)
   - constructors (https://typing.python.org/en/latest/spec/constructors.html)
-  - properties, extending, ultimately used the @dataclass (https://docs.python.org/3/library/dataclasses.html)
-  - namedtuple vs dataclass (frozen=true to make it easily usable in a dictionary.) honestly, still not sure what is right - downsides to both that I'm still learning. I probably would have used numpy for this if I didn't have the no ~frameworks constraint
+  - properties, extending, ultimately used NamedTuple (https://docs.python.org/3/library/typing.html#typing.NamedTuple)
+  - NamedTuple vs dataclass (opted for NamedTuple since mine is Vector2D(int,int). Because ints have stable hashes (and equality functions) they works in a dictionary natively — I use the orientation vectors as keys in _VK_FOR_DIRECTION to map them to virtual key codes. A dataclass can work too but requires frozen=True.) honestly, still not sure what is right - downsides to both that I'm still learning. I probably would have used numpy for this if I didn't have the no ~frameworks constraint
 
 
 ## FUN: gained awareness of Indigenous syllabics<sup>‡</sup>
@@ -102,11 +102,11 @@ My teacher took us to a Japanese Garden. We drank green tea, meditated, and let 
   - https://en.wikipedia.org/wiki/Canadian_Aboriginal_syllabics
 
 ### Rotation Charts and some related, original sources<sup>⹋</sup>
-> <sup>⹋</sup>Note: These images aren't mine to redistribute, so I link them rather than keeping copies here. The 2015 radial chart's page is gone, so that link goes to the Internet Archive. The grid chart is still live, so that link goes to Blue Quills directly.
+> <sup>⹋</sup>Note: These images aren't mine to redistribute, so I link them at their original locations than storing  copies in my repo. The 2015 radial chart's page is gone, so that link goes to the Internet Archive. The grid chart is still live, so that link goes to Blue Quills directly.
 
 #### Radially Symmetrical Cree Syllabary Chart
 ![Cree Syllabary Chart showing Rotation, Blue Quills, uploaded June 2015](https://web.archive.org/web/20171128135556im_/http://www.bluequills.ca/wp-content/uploads/2015/06/Syllabics-chart-with-sounds-943x1024.jpg)
-The whole syllabary in one figure. Beautifully laid out. You can see how the system works without being told. That's what stopped me, made me notice the rotations, and unrelentingly piqued an unrelenting interest in this subject. I first found an image showing the Cree Syllabics laid out rotationally i a [May 2017 blog post](https://allthingslinguistic.com/post/160962768612/canadian-aboriginal-syllabics-is-a-writing-system). The post linked generally to the school, but I could not find the original page ("This brilliant visualization is from the Bachelor of Arts in Cree Language at University nuhelot’įne thaiyots’į nistameyimâkanak Blue Quills.") -- reverse image search only returned the blog and other links written after it. Tracing it back leads to Blue Quills (UnBQ) in St. Paul, Alberta. Their site is still live but is different now. Only links I could find were in the Internet Archive:
+The whole syllabary in one figure. Beautifully laid out. You can see how the system works without being told. That's what stopped me, made me notice the rotations, and unrelentingly piqued a fascination in this subject. I first found an image showing the Cree Syllabics laid out rotationally in a [May 2017 blog post](https://allthingslinguistic.com/post/160962768612/canadian-aboriginal-syllabics-is-a-writing-system). The post linked generally to the school, but I could not find the original page ("This brilliant visualization is from the Bachelor of Arts in Cree Language at University nuhelot’įne thaiyots’į nistameyimâkanak Blue Quills.") -- reverse image search only returned the blog and other links written after it. Tracing it back leads to Blue Quills (UnBQ) in St. Paul, Alberta. Their site is still live but is different now. Only links I could find were in the Internet Archive:
 - Page, earliest Wayback capture (2017-11-28):
   https://web.archive.org/web/20171128135556/http://www.bluequills.ca/elders-2/syllabics-chart-with-sounds/
 - Image: https://web.archive.org/web/20171128135556im_/http://www.bluequills.ca/wp-content/uploads/2015/06/Syllabics-chart-with-sounds-943x1024.jpg

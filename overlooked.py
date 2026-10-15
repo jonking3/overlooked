@@ -45,10 +45,8 @@ def vk_for(direction):
 # ==========================================
 # 2. DATA STRUCTURES & CLASSES
 # ==========================================
-#from dataclasses import dataclass
 from typing import NamedTuple
 
-#@dataclasses
 class Vector2D(NamedTuple):
     x: int
     y: int
