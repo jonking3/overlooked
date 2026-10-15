@@ -89,7 +89,7 @@ My teacher took us to a Japanese Garden. We drank green tea, meditated, and let 
   - classes (https://www.w3schools.com/python/python_classes.asp)
   - constructors (https://typing.python.org/en/latest/spec/constructors.html)
   - properties, extending, ultimately used NamedTuple (https://docs.python.org/3/library/typing.html#typing.NamedTuple)
-  - NamedTuple vs dataclass (opted for NamedTuple since mine is Vector2D(int,int). Because ints have stable hashes (and equality functions) they work in a dictionary natively — I use the orientation vectors as keys in _VK_FOR_DIRECTION to map them to virtual key codes. A dataclass can work too but requires frozen=True.) honestly, still not sure what is right - downsides to both that I'm still learning. I probably would have used numpy for this if I didn't have the no ~frameworks constraint
+  - NamedTuple vs dataclass (opted for NamedTuple since mine is Vector2D(int,int). Because ints have stable hashes (and equality functions) it works in a dictionary natively - I use the orientation vectors as keys in _VK_FOR_DIRECTION to map them to virtual key codes. A dataclass can work too but requires frozen=True.) honestly, still not sure what is right - downsides to both that I'm still learning. I probably would have used numpy for this if I didn't have the no ~frameworks constraint
 
 
 ## FUN: gained awareness of Indigenous syllabics<sup>‡</sup>
@@ -133,7 +133,7 @@ I'm including it as an example of the glyphs in running text rather than in a ch
   - **NOTE** all code was typed by me
 - (multiple) reference docs
   - using Google AI / Claude / Gemini has become intertwined into my doc lookup and internalization
-- (Google AI) namedTuple / data class / mods
+- (Google AI) NamedTuple / data class / mods
   - discussed non-framework options for Vector2D
   - decided to make my own and use a NamedTuple
 - (Claude) character selection discussion
